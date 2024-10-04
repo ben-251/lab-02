@@ -364,21 +364,19 @@ library(readxl)</code></pre>
 </div>
 <div id="load-join-data-sets" class="section level2">
 <h2>Load &amp; join data sets</h2>
-<pre class="r"><code># Member 2 (pair 1) write code to load File 1 data here:
-data1 &lt;- read_csv(&quot;data/mismanaged-plastic-waste-per-capita.csv&quot;)
+<pre class="r"><code>data1 &lt;- read_csv(&quot;data/mismanaged-plastic-waste-per-capita.csv&quot;)
 
 
 
-
-# Member 4 (pair 2) write code to load File 2 data here:
 data2 &lt;- read_csv2(&quot;data/per-capita-ocean-plastic-waste.txt&quot;)
 
 
-# Member 6 (pair 3) write code to load File 3 data here:
+
 data3 &lt;- read_tsv(&quot;data/UN_country_population.tsv&quot;)
 
 
-# Member 1 (pair 1) write code to load File 4 data here:</code></pre>
+
+data4 &lt;- read_excel(&quot;data/UN_country_region.xlsx&quot;)</code></pre>
 <pre class="r"><code># Member 2 (pair 1) write code to create object &#39;plastic_data_all&#39;:
 plastic_data_all &lt;- data1
 
@@ -397,22 +395,25 @@ plastic_data_all &lt;- data3 %&gt;%
 
 
 
-# Member 1 (pair 1) write code to join your data to &#39;plastic_data_all&#39;:</code></pre>
+# Member 1 (pair 1) write code to join your data to &#39;plastic_data_all&#39;:
+plastic_data_all &lt;- data4 %&gt;%
+  select(-name) %&gt;%
+  right_join(plastic_data_all, by = &quot;code&quot;)</code></pre>
 <pre class="r"><code># Member 2 (pair 1) adds code here to view the first 10 rows of &#39;plastic_data_all&#39;
 plastic_data_all %&gt;% head(n = 10)</code></pre>
-<pre><code>## # A tibble: 10 × 4
-##    code  population name       mismanaged_plastic
-##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;
-##  1 COM         784. Comoros                69.5  
-##  2 DJI        1066. Djibouti               10.6  
-##  3 ERI        3474. Eritrea                24.0  
-##  4 KEN       50443. Kenya                   5.51 
-##  5 MDG       27187. Madagascar              0.936
-##  6 MUS        1296. Mauritius               0.235
-##  7 MOZ       29850. Mozambique             14.3  
-##  8 REU         945. Reunion                 0.262
-##  9 SYC         104. Seychelles              0.337
-## 10 SOM       15690. Somalia                 0</code></pre>
+<pre><code>## # A tibble: 10 × 5
+##    code  region                          population name      mismanaged_plastic
+##    &lt;chr&gt; &lt;chr&gt;                                &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
+##  1 AGO   Africa                             31808.  Angola                 7.45 
+##  2 ALB   Europe                              2876.  Albania               24.2  
+##  3 ARE   Asia                                9176.  United A…              0.526
+##  4 ARG   Latin America and The Caribbean    44583.  Argentina             10.4  
+##  5 ATG   Latin America and The Caribbean       91.9 Antigua …              6.46 
+##  6 AUS   Oceania                            25170.  Australia              0.209
+##  7 BEL   Europe                             11480.  Belgium                0.198
+##  8 BEN   Africa                             12114.  Benin                 11.3  
+##  9 BFA   Africa                             20671.  Burkina …             15.6  
+## 10 BGD   Asia                              164605.  Banglade…              6.27</code></pre>
 </div>
 <div id="exercises" class="section level2">
 <h2>Exercises</h2>
