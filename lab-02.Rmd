@@ -84,12 +84,13 @@ Africa
 ### Ex 2.
 
 ```{r Ex2, message = FALSE}
-# Write your code here to answer exercise 2
 
-
+mutate (plastic_data_all, total_mismanaged_plastic = mismanaged_plastic*population) %>%
+group_by(region) %>%
+summarise(plastic_mean = mean(total_mismanaged_plastic))
 
 ```
-
+Asia; Oceania
 
 ### Ex 3.
 
